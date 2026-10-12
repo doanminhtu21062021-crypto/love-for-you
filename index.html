@@ -2,112 +2,242 @@
 <html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>Gửi em ❤️</title>
 
     <style>
       * {
         box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
       }
 
       body {
         margin: 0;
+        padding: 0;
         min-height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
-        overflow: hidden;
-        background: linear-gradient(135deg, #180b20, #4a123a, #190b2d);
-        font-family: Arial, sans-serif;
+        overflow-x: hidden;
+        overflow-y: auto;
+        background: linear-gradient(135deg, #120719, #3b0d2e, #140824);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         color: white;
         text-align: center;
       }
 
       .container {
         width: 100%;
+        max-width: 420px;
         padding: 20px;
-        z-index: 2;
+        z-index: 100;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
       h1 {
         color: #ffb6d9;
-        font-size: 28px;
+        font-size: 24px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+        text-shadow: 0 0 10px rgba(255, 182, 217, 0.5);
+        animation: fadeInDown 1.5s ease-out;
       }
 
       .heart {
         position: relative;
-        width: 100px;
-        height: 100px;
-        margin: 45px auto;
+        width: 70px;
+        height: 70px;
+        margin: 15px auto 20px auto;
         background: #ff2868;
         transform: rotate(-45deg);
-        animation: heartbeat 1s infinite;
+        animation:
+          heartbeat 1.2s infinite ease-in-out,
+          fadeIn 1.5s ease-out;
         box-shadow:
           0 0 30px #ff2868,
-          0 0 70px #ff2868;
+          0 0 60px #ff2868;
       }
 
       .heart::before,
       .heart::after {
         content: "";
         position: absolute;
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 70px;
         background: #ff2868;
         border-radius: 50%;
       }
 
       .heart::before {
-        top: -50px;
+        top: -35px;
         left: 0;
       }
 
       .heart::after {
         top: 0;
-        left: 50px;
+        left: 35px;
       }
 
       @keyframes heartbeat {
         0%,
         100% {
-          scale: 1;
+          transform: rotate(-45deg) scale(1);
         }
         50% {
-          scale: 1.15;
+          transform: rotate(-45deg) scale(1.15);
         }
       }
 
       .message {
-        font-size: 18px;
-        line-height: 1.8;
-        margin: 20px auto;
-        max-width: 360px;
+        font-size: 15px;
+        line-height: 1.6;
+        margin: 10px auto 20px auto;
+        color: #ffd1ec;
+        animation: fadeInUp 1.5s ease-out;
       }
 
-      button {
+      /* NÚT BẤM LÃNG MẠN Ở GIỮA */
+      .love-btn {
         background: linear-gradient(45deg, #ff4f91, #ff2868);
         color: white;
         border: none;
-        padding: 14px 26px;
+        padding: 14px 28px;
         border-radius: 30px;
         font-size: 17px;
+        font-weight: bold;
         cursor: pointer;
-        box-shadow: 0 4px 20px #ff286855;
+        box-shadow: 0 4px 20px rgba(255, 40, 104, 0.6);
+        margin: 15px 0 25px 0;
+        animation: pulseBtn 2s infinite;
+        outline: none;
+        transition: all 0.3s ease;
       }
 
+      @keyframes pulseBtn {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(255, 79, 145, 0.7);
+        }
+        70% {
+          transform: scale(1.05);
+          box-shadow: 0 0 0 15px rgba(255, 79, 145, 0);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(255, 79, 145, 0);
+        }
+      }
+
+      .love-btn:hover {
+        transform: scale(1.08);
+        background: linear-gradient(45deg, #ff65a3, #ff1759);
+      }
+
+      .love-btn:active {
+        transform: scale(0.95);
+      }
+
+      /* BỨC THƯ BAN ĐẦU ĐƯỢC ẨN ĐI */
       #letter {
         display: none;
-        margin: 25px auto 0;
-        padding: 20px;
-        max-width: 380px;
-        background: #ffffff15;
-        border: 1px solid #ffffff35;
-        border-radius: 18px;
+        margin-top: 10px;
+        padding: 22px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 20px;
         line-height: 1.8;
-        animation: appear 1s ease;
+        backdrop-filter: blur(8px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        animation: zoomIn 1s ease-out;
+        position: relative;
+        overflow: hidden;
       }
 
-      @keyframes appear {
+      h2 {
+        font-size: 20px;
+        color: #ffb6d9;
+        margin-top: 0;
+        margin-bottom: 12px;
+      }
+
+      .typewriter-text {
+        font-size: 15px;
+        min-height: 120px;
+      }
+
+      /* HIỆU ỨNG TRÁI TIM BỰ NỔ LAN TỎA RỒI BAY VÚT RA NGOÀI LÁ THƯ */
+      .big-boom-heart {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(135deg, #ff4f91, #ff2868);
+        z-index: 999;
+        box-shadow:
+          0 0 40px #ff2868,
+          0 0 80px #ff4f91,
+          0 0 120px rgba(255, 40, 104, 0.6);
+        pointer-events: none;
+        opacity: 0;
+        animation: romanticFlyOut 3.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+      }
+
+      .big-boom-heart::before,
+      .big-boom-heart::after {
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        background: inherit;
+        border-radius: 50%;
+      }
+
+      .big-boom-heart::before {
+        top: -50px;
+        left: 0;
+      }
+
+      .big-boom-heart::after {
+        top: 0;
+        left: 50px;
+      }
+
+      @keyframes romanticFlyOut {
+        0% {
+          transform: translate(-50%, -50%) rotate(-45deg) scale(0);
+          opacity: 0;
+        }
+        30% {
+          transform: translate(-50%, -50%) rotate(-45deg) scale(1.3);
+          opacity: 0.9;
+        }
+        100% {
+          transform: translate(-50%, -220%) rotate(-45deg) scale(1);
+          opacity: 0; /* Bay vút lên trên và mờ dần biến mất */
+        }
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
         from {
           opacity: 0;
           transform: translateY(20px);
@@ -118,11 +248,22 @@
         }
       }
 
+      @keyframes zoomIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
       .floating-heart {
         position: fixed;
         bottom: -30px;
         animation: floatUp 5s linear forwards;
-        pointer-events: none;
+        pointer-events: none !important;
         z-index: 1;
       }
 
@@ -142,47 +283,107 @@
       <div class="heart"></div>
 
       <div class="message">
-        Có một trái tim đang đập...<br />
-        Và nó luôn dành một chỗ cho em ❤️
+        Có một trái tim đang đập vì em...<br />
+        Và đây là những điều anh muốn gửi đến em ❤️
       </div>
 
-      <button onclick="openLetter()">💌 Bấm vào đây nhé</button>
+      <!-- NÚT BẤM MỞ THƯ -->
+      <button id="mainButton" class="love-btn" onclick="openLetter()">
+        💌 Bấm vào đây nhé
+      </button>
 
+      <!-- BỨC THƯ BAN ĐẦU BỊ ẨN, CHỈ HIỆN KHI BẤM NÚT -->
       <div id="letter">
         <h2>💖 Gửi em yêu 💖</h2>
-        Anh không biết nói những lời hoa mỹ,<br />
-        nhưng anh thật lòng muốn em biết rằng...<br />
-        <b>Em là một điều rất đặc biệt đối với anh.</b><br />
-        Cảm ơn em vì đã xuất hiện trong cuộc đời anh.<br />
-        Mong rằng chúng ta sẽ còn cùng nhau<br />
-        tạo nên thật nhiều kỷ niệm đẹp nhé! 🥰<br /><br />
-        <span style="font-size: 26px">Anh yêu em ❤️</span>
+        <div id="typedText" class="typewriter-text"></div>
       </div>
     </div>
 
     <script>
-      function openLetter() {
-        document.getElementById("letter").style.display = "block";
-        document.querySelector("button").textContent = "❤️ Anh thương em ❤️";
+      const fullText =
+        "Anh không biết nói những lời hoa mỹ,\nnhưng anh thật lòng muốn em biết rằng...\nEm là một điều rất đặc biệt đối với anh. ✨\nCảm ơn em vì đã xuất hiện trong cuộc đời anh.\nMong rằng chúng ta sẽ còn cùng nhau\ntạo nên thật nhiều kỷ niệm đẹp nhé! 🥰\n\nAnh yêu em ❤️";
 
+      const btn = document.getElementById("mainButton");
+      const letterBox = document.getElementById("letter");
+      const typedTextElem = document.getElementById("typedText");
+      let hasOpened = false;
+      let hasBoomed = false;
+
+      function openLetter() {
+        if (hasOpened) return;
+        hasOpened = true;
+
+        // Đổi chữ trên nút và tắt hiệu ứng nhịp tim của nút
+        btn.textContent = "❤️ Anh thương em ❤️";
+        btn.style.animation = "none";
+
+        // Hiện khung lá thư ra
+        letterBox.style.display = "block";
+
+        // Bắt đầu thả tim bay ngập tràn màn hình
         for (let i = 0; i < 25; i++) {
-          setTimeout(createHeart, i * 100);
+          setTimeout(createHeart, i * 150);
+        }
+
+        // Chạy hiệu ứng gõ chữ từ từ lãng mạn sau 0.4 giây
+        setTimeout(() => {
+          typeWriter(fullText, 0);
+        }, 400);
+      }
+
+      function typeWriter(text, i) {
+        if (i < text.length) {
+          if (text.charAt(i) === "\n") {
+            typedTextElem.innerHTML += "<br>";
+          } else if (text.substring(i, i + 11) === "Anh yêu em") {
+            typedTextElem.innerHTML += `<b style="font-size:22px; color:#ffb6d9;">${text.substring(i, i + 10)}</b>`;
+            i += 9;
+          } else {
+            typedTextElem.innerHTML += text.charAt(i);
+          }
+          i++;
+          setTimeout(() => typeWriter(text, i), 50); // Tốc độ gõ chữ dịu dàng
+        } else {
+          // KHI GÕ XONG HẾT CHỮ -> KÍCH HOẠT TRÁI TIM BỰ NỔ VÀ BAY RA NGOÀI LÁ THƯ
+          if (!hasBoomed) {
+            hasBoomed = true;
+            triggerBigHeartBoom();
+          }
+        }
+      }
+
+      function triggerBigHeartBoom() {
+        const bigHeart = document.createElement("div");
+        bigHeart.className = "big-boom-heart";
+        letterBox.appendChild(bigHeart);
+
+        // Xóa trái tim bự sau khi bay xong
+        setTimeout(() => {
+          bigHeart.remove();
+        }, 3800);
+
+        // Kèm thêm loạt mưa trái tim bay thong thả chúc mừng
+        for (let j = 0; j < 35; j++) {
+          setTimeout(createHeart, j * 120);
         }
       }
 
       function createHeart() {
         const heart = document.createElement("div");
         heart.className = "floating-heart";
-        heart.textContent = ["❤️", "💕", "💗", "💖"][
-          Math.floor(Math.random() * 4)
+        heart.textContent = ["❤️", "💕", "💗", "💖", "✨"][
+          Math.floor(Math.random() * 5)
         ];
-        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.left = Math.random() * 95 + "vw";
         heart.style.fontSize = 18 + Math.random() * 25 + "px";
-        heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+        heart.style.animationDuration = 3.5 + Math.random() * 2.5 + "s";
 
         document.body.appendChild(heart);
         setTimeout(() => heart.remove(), 6000);
       }
+
+      // Thả tim bay nhè nhẹ liên tục ở nền làm phong nền
+      setInterval(createHeart, 1200);
     </script>
   </body>
 </html>
